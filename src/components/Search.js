@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Search = () => {
-
     const [term, setTerm] = useState('');
 
     useEffect(() => {
-        console.log("Rerendered");
+        const search = async () => {
+            await axios.get('');
+        }
+        search();
+
+        // (async () => {
+        //     await axios.get('');
+        // })();
+
+        //await.get('').then((response)=>{console.log(response.data)});
+
     }, [term]);
 
     const onChangeInput = (e) => {
