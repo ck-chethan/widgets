@@ -19,8 +19,20 @@ const Search = () => {
             });
             setResults(data.query.search);
         }
-        search();
 
+        if (term && !results.length) {
+            search();
+        }
+        else {
+            const timeoutId = setTimeout(() => {
+                if (term) {
+                    search();
+                }
+            }, 500);
+            return () => {
+                clearTimeout(timeoutId);
+            };
+        }
         // (async () => {
         //     await axios.get('https://en.wikipedia.org/w/api.php', {
         //         params: {
@@ -48,6 +60,9 @@ const Search = () => {
     const renderedResults = results.map((result) => {
         return (
             <div key={result.pageid} className="item">
+                <div className="right floated content">
+                    <a href={`https://en.wikipedia.org?curid=${result.pageid}`} className="ui button">Go</a>
+                </div>
                 <div className="content">
                     <div className="header">
                         {result.title}
