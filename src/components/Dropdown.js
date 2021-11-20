@@ -5,13 +5,20 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
     const ref = useRef();//Using this we're getting the reference of most level element in the Dropdown
 
     useEffect(() => {
-        document.body.addEventListener('click', (event) => {
+        const onBodyClick = (event) => {
             //console.log(event.target);
             if (ref.current.contains(event.target)) {
                 return;
             }
             setOpen(false);
-        }, { capture: true });
+        };
+
+        document.body.addEventListener('click', onBodyClick, { capture: true });
+
+        return () => {
+            document.body.removeEventListener('click', onBodyClick, { capture: true })
+        }
+
     }, []);
 
     const renderedOptions = options.map((option) => {
@@ -28,7 +35,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
     return (
         <div ref={ref} className="ui form">
             <div className="field">
-                <label htmlFor="" className="label">Select a Color</label>
+                <label className="label">Select a Color</label>
                 <div onClick={() => setOpen(!open)} className={`ui selection dropdown ${open && 'visible active'}`}>
                     <i className="dropdown icon"></i>
                     <div className="text">{selected.label}</div>
