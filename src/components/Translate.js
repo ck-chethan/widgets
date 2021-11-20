@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Convert from './Convert';
 import Dropdown from './Dropdown'
 
-const API_KEY = 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM';
 
 const options = [
     {
