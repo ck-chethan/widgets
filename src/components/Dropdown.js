@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-const Dropdown = ({ options, selected, onSelectedChange }) => {
+const Dropdown = ({ label, options, selected, onSelectedChange }) => {
     const [open, setOpen] = useState(false);
     const ref = useRef();//Using this we're getting the reference of most level element in the Dropdown
 
@@ -35,7 +35,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
     return (
         <div ref={ref} className="ui form">
             <div className="field">
-                <label className="label">Select a Color</label>
+                <label className="label">{label}</label>
                 <div onClick={() => setOpen(!open)} className={`ui selection dropdown ${open && 'visible active'}`}>
                     <i className="dropdown icon"></i>
                     <div className="text">{selected.label}</div>
