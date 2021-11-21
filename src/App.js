@@ -58,6 +58,10 @@ const showTranslate = () => {
     }
 }
 
+// const showComponents = (route, compnent) => {
+//     return (window.location.pathname === route ? compnent : null);
+// }
+
 export default () => {
     return (
         <div className="">
